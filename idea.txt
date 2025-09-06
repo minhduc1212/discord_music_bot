@@ -1,0 +1,1 @@
+thêm slash command, chỉnh sửa ui

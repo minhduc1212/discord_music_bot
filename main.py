@@ -1,5 +1,4 @@
-import corebot
+import origin
 
 if __name__ == "__main__":
-    corebot.run_bot()
-        
+    origin.run_bot()
