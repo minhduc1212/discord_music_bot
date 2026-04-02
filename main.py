@@ -1,4 +1,4 @@
-import origin
+from src.bot import run
 
 if __name__ == "__main__":
-    origin.run_bot()
+    run()
