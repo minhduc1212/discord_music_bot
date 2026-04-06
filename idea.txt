@@ -1,1 +1,3 @@
 thêm slash command, chỉnh sửa ui
+
+thêm nghe nhạc trên soundcloud, spotify

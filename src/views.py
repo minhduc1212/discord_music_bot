@@ -28,7 +28,7 @@ class MusicView(discord.ui.View):
             return False
         return True
 
-    @discord.ui.button(emoji="⏮️", style=discord.ButtonStyle.secondary, custom_id="mb:prev", row=0)
+    @discord.ui.button(emoji="🔄", style=discord.ButtonStyle.secondary, custom_id="mb:prev", row=0)
     async def btn_prev(self, interaction: discord.Interaction, _: discord.ui.Button):
         vc     = interaction.guild.voice_client
         gid    = interaction.guild.id
@@ -39,7 +39,7 @@ class MusicView(discord.ui.View):
         current.stream_url = None
         q_data["queue"].insert(0, current)
         vc.stop()
-        await interaction.response.send_message("⏮️ Phát lại từ đầu.", ephemeral=True)
+        await interaction.response.send_message("🔄 Đã yêu cầu phát lại.", ephemeral=True)
 
     @discord.ui.button(emoji="⏯️", style=discord.ButtonStyle.primary, custom_id="mb:pause", row=0)
     async def btn_pause(self, interaction: discord.Interaction, _: discord.ui.Button):
@@ -55,19 +55,19 @@ class MusicView(discord.ui.View):
         else:
             await interaction.response.send_message("Không có gì đang phát.", ephemeral=True)
 
-    @discord.ui.button(emoji="⏭️", style=discord.ButtonStyle.primary, custom_id="mb:skip", row=0)
+    @discord.ui.button(emoji="⏩", style=discord.ButtonStyle.primary, custom_id="mb:skip", row=0)
     async def btn_skip(self, interaction: discord.Interaction, _: discord.ui.Button):
         vc = interaction.guild.voice_client
         if vc and (vc.is_playing() or vc.is_paused()):
             vc.stop()
-            await interaction.response.send_message("⏭️ Đã bỏ qua.", ephemeral=True)
+            await interaction.response.send_message("⏩ Đã bỏ qua.", ephemeral=True)
         else:
             await interaction.response.send_message("Không có gì đang phát.", ephemeral=True)
 
-    @discord.ui.button(emoji="⏹️", style=discord.ButtonStyle.danger, custom_id="mb:stop", row=0)
+    @discord.ui.button(emoji="🛑", style=discord.ButtonStyle.danger, custom_id="mb:stop", row=0)
     async def btn_stop(self, interaction: discord.Interaction, _: discord.ui.Button):
         await self.cog.cleanup(interaction.guild)
-        await interaction.response.send_message("⏹️ Đã dừng và ngắt kết nối.", ephemeral=True)
+        await interaction.response.send_message("🛑 Đã dừng và ngắt kết nối.", ephemeral=True)
 
     @discord.ui.button(emoji="🔀", style=discord.ButtonStyle.secondary, custom_id="mb:shuffle", row=1)
     async def btn_shuffle(self, interaction: discord.Interaction, _: discord.ui.Button):
@@ -86,10 +86,10 @@ class MusicView(discord.ui.View):
             f"{nxt.emoji()} Loop: **{nxt.label()}**", ephemeral=True
         )
 
-    @discord.ui.button(label="📋 Queue", style=discord.ButtonStyle.secondary, custom_id="mb:queue", row=1)
+    @discord.ui.button(emoji="📜", label="Queue", style=discord.ButtonStyle.secondary, custom_id="mb:queue", row=1)
     async def btn_queue(self, interaction: discord.Interaction, _: discord.ui.Button):
         await self.cog.show_queue(interaction, ephemeral=True)
 
-    @discord.ui.button(label="❓ Help", style=discord.ButtonStyle.secondary, custom_id="mb:help", row=1)
+    @discord.ui.button(emoji="ℹ️", label="Help", style=discord.ButtonStyle.secondary, custom_id="mb:help", row=1)
     async def btn_help(self, interaction: discord.Interaction, _: discord.ui.Button):
         await self.cog.show_help(interaction, ephemeral=True)

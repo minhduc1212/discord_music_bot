@@ -25,7 +25,8 @@ class MusicBot(commands.Bot):
             log.error(f"Sync thất bại: {e}")
 
     async def on_ready(self):
-        log.info(f"Bot online: {self.user} (ID: {self.user.id})")
+        user_id = self.user.id if self.user else "Unknown"
+        log.info(f"Bot online: {self.user} (ID: {user_id})")
         await self.change_presence(
             activity=discord.Activity(
                 type=discord.ActivityType.listening,

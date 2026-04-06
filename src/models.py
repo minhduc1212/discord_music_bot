@@ -1,5 +1,6 @@
 import asyncio
 from enum import Enum
+from typing import Any
 
 import discord
 import yt_dlp
@@ -50,7 +51,7 @@ class Song:
             loop = asyncio.get_event_loop()
 
             def _extract():
-                with yt_dlp.YoutubeDL(YTDL_SINGLE_OPTIONS) as ydl:
+                with yt_dlp.YoutubeDL(YTDL_SINGLE_OPTIONS) as ydl: # type: ignore
                     info = ydl.extract_info(self.webpage_url, download=False)
                     if not self.thumbnail:
                         self.thumbnail = info.get("thumbnail")

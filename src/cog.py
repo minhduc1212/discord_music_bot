@@ -39,8 +39,8 @@ class MusicCog(commands.Cog):
             embed.set_thumbnail(url=song.thumbnail)
 
         embed.add_field(name="⏱ Thời lượng",       value=song.fmt_duration(), inline=True)
-        embed.add_field(name="📺 Kênh",             value=song.uploader,       inline=True)
-        embed.add_field(name="🎶 Trong queue",      value=f"{q_len} bài",     inline=True)
+        embed.add_field(name="🎤 Kênh",             value=song.uploader,       inline=True)
+        embed.add_field(name="� Trong queue",      value=f"{q_len} bài",     inline=True)
         embed.add_field(name=f"{loop.emoji()} Loop", value=loop.label(),       inline=True)
         embed.set_footer(
             text=f"Yêu cầu bởi {song.requester.display_name}",
@@ -286,14 +286,14 @@ class MusicCog(commands.Cog):
         vc = interaction.guild.voice_client
         if vc and (vc.is_playing() or vc.is_paused()):
             vc.stop()
-            await interaction.response.send_message("⏭️ Đã bỏ qua.")
+            await interaction.response.send_message("⏩ Đã bỏ qua.")
         else:
             await interaction.response.send_message("Không có gì đang phát.", ephemeral=True)
 
     @app_commands.command(name="stop", description="Dừng nhạc và ngắt kết nối")
     async def cmd_stop(self, interaction: discord.Interaction):
         await self.cleanup(interaction.guild)
-        await interaction.response.send_message("⏹️ Đã dừng và ngắt kết nối.")
+        await interaction.response.send_message("🛑 Đã dừng và ngắt kết nối.")
 
     @app_commands.command(name="loop", description="Chuyển chế độ lặp: Tắt → Bài → Queue")
     async def cmd_loop(self, interaction: discord.Interaction):
